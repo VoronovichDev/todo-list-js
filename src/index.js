@@ -11,6 +11,7 @@ const todoItems = [
    { taskName: 'task1', taskDescription: 'description for task1', taskDate: '10-10-2011', isDone: false, isImportant: false },
    { taskName: 'task2', taskDescription: 'description for task2', taskDate: '10-10-2012', isDone: true, isImportant: true },
    { taskName: 'task3', taskDescription: 'description for task3', taskDate: '10-10-2013', isDone: false, isImportant: false },
+   { taskName: 'task4', taskDescription: 'description for task4', taskDate: '10-10-2014', isDone: false, isImportant: false },
 ]
 
 // render layout
@@ -23,7 +24,7 @@ container.appendChild(StateButtons)
 
 // render todos
 const renderTodoItems = () => todoItems.forEach(item => {
-   let taskId = todoItems.indexOf(item) + 1
+   let taskId = todoItems.indexOf(item)
    todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
 })
 renderTodoItems()
@@ -46,7 +47,8 @@ AddTaskButton.addEventListener('click', (e) => {
       let newTask = {
          taskName: document.getElementById('taskName').value,
          taskDescription: document.getElementById('taskDescription').value,
-         taskDate: document.getElementById('deadline').value,
+         // format date
+         taskDate: document.getElementById('deadline').value.split('-').reverse().join('-'),
          isDone: document.getElementById('check__done').checked,
          isImportant: document.getElementById('check__important').checked
       }
@@ -65,3 +67,14 @@ AddTaskButton.addEventListener('click', (e) => {
 
 
 
+TodoList.addEventListener('click', (e) => {
+   // delete task logic
+   if (e.target.className === 'todo__delete') {
+      todoItems.splice(+e.target.parentNode.getAttribute('taskid'), 1)
+      todoList.innerHTML = ''
+      renderTodoItems()
+      // toggle isDone logic
+   } else if (e.target.name === 'isdone') {
+      todoItems[e.target.parentNode.getAttribute('taskid')].isDone = !todoItems[e.target.parentNode.getAttribute('taskid')].isDone
+   } else return
+})
