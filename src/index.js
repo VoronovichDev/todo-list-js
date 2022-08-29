@@ -27,6 +27,9 @@ const renderTodoItems = () => todoItems.forEach(item => {
    let taskId = todoItems.indexOf(item)
    todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
 })
+
+
+
 renderTodoItems()
 
 // "Add task +" button logic
@@ -66,7 +69,6 @@ AddTaskButton.addEventListener('click', (e) => {
 })
 
 
-
 TodoList.addEventListener('click', (e) => {
    // delete task logic
    if (e.target.className === 'todo__delete') {
@@ -77,4 +79,31 @@ TodoList.addEventListener('click', (e) => {
    } else if (e.target.name === 'isdone') {
       todoItems[e.target.parentNode.getAttribute('taskid')].isDone = !todoItems[e.target.parentNode.getAttribute('taskid')].isDone
    } else return
+})
+
+
+// shows tasks depending on the selected state
+StateButtons.addEventListener('click', (e) => {
+   if (e.target.className === 'done') {
+      console.log('it is done button')
+      let doneTasks = todoItems.filter(item => item.isDone)
+      console.log(doneTasks)
+      const renderDoneItems = () => doneTasks.forEach(item => {
+         let taskId = todoItems.indexOf(item)
+         todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
+      })
+      todoList.innerHTML = ''
+      renderDoneItems()
+   } else if (e.target.className === 'all') {
+      todoList.innerHTML = ''
+      renderTodoItems()
+   } else if (e.target.className === 'active') {
+      todoList.innerHTML = ''
+      let activeTasks = todoItems.filter(item => !item.isDone)
+      const renderActiveItems = () => activeTasks.forEach(item => {
+         let taskId = todoItems.indexOf(item)
+         todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
+      })
+      renderActiveItems()
+   }
 })
