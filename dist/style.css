@@ -26,13 +26,14 @@ body {
 
 /*container*/
 #container {
-   height: 100vh;
-   width: 100vw;
+   height: auto;
+   width: 100%;
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
    gap: 20px;
+   padding: 20px 0;
 }
 
 /*list container*/
@@ -41,8 +42,8 @@ body {
    flex-direction: column;
    align-items: stretch;
    justify-content: space-between;
-   gap: 20px;
-   padding: 0 15px;
+   gap: 10px;
+   padding: 0 10px;
    width: 50%;
 }
 
@@ -52,10 +53,10 @@ body {
    grid-template-rows: auto auto;
    grid-template-columns: 20px auto 70px 70px;
    background-color: rgb(193, 193, 193);
-   padding: 15px;
+   padding: 10px;
    align-items: center;
-   column-gap: 30px;
-   row-gap: 15px;
+   column-gap: 5px;
+   row-gap: 10px;
 }
 
 .todo p.task__description {
@@ -75,7 +76,8 @@ body {
 }
 
 .todo button {
-   width: 70px;
+   font-size: 0.8rem;
+   width: 60px;
    height: 30px;
 }
 
