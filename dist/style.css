@@ -1,3 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap');
+/*reset*/
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Comfortaa', cursive;
+   text-align: center;
+   font-weight: 300;
+}
+
+ul {
+   list-style: none;
+}
+
 h1 {
    color: #3aa3ea;
+   font-weight: 700;
+}
+
+body {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+/*container*/
+#container {
+   height: 100vh;
+   width: 100vw;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 20px;
+}
+
+/*list container*/
+.todos {
+   display: flex;
+   flex-direction: column;
+   align-items: stretch;
+   justify-content: space-between;
+   gap: 20px;
+   padding: 0 15px;
+   width: 50%;
+}
+
+/*To-do-item*/
+.todo {
+   display: grid;
+   grid-template-rows: auto auto;
+   grid-template-columns: 20px auto 70px 70px;
+   background-color: rgb(193, 193, 193);
+   padding: 15px;
+   align-items: center;
+   column-gap: 30px;
+   row-gap: 15px;
+}
+
+.todo p.task__description {
+   justify-self: left;
+   grid-row: 1;
+   grid-column: 1/3;
+}
+.todo p.task__date {
+   justify-self: right;
+   grid-row: 1;
+   grid-column: 3/-1;
+}
+
+.todo input {
+   width: 20px;
+   height: 20px;
+}
+
+.todo button {
+   width: 70px;
+   height: 30px;
+}
+
+.todo p.task__name {
+   grid-column: 2/3;
+   justify-self: start;
+   text-align: left;
+   font-weight: 400;
+}
+
+/*styles for important task*/
+.task__important {
+   background-color: rgb(255, 122, 122);
+}
+
+/*statr-buttons*/
+.state__btns {
+   display: flex;
+   gap: 20px;
+}
+
+.state__btns button {
+   padding: 10px 5px;
+   width: 70px;
 }

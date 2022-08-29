@@ -8,7 +8,41 @@
    <title>Todo list</title>
 </head>
 <body>
-   <h1></h1>
+   <div id="container">
+      <h1>Todo List</h1>
+      <button type="button" class="add__todo">Add task +</button>
+      <ul class="todos">
+         <div class="todo">
+            <p class="task__description">Description for task1</p>
+            <p class="task__date">10-10-2010</p>
+            <input type="checkbox" name="isdone" id="todo__isdone">
+            <p class="task__name">Task1 </p>
+            <button type="button" class="todo__delete">Delete</button>
+            <button type="button" class="todo__edit">Edit</button>
+         </div>
+         <div class="todo">
+            <p class="task__description">Description for task2</p>
+            <p class="task__date">10-10-2010</p>
+            <input type="checkbox" name="isdone" id="todo__isdone">
+            <p class="task__name">Task2</p>
+            <button type="button" class="todo__delete">Delete</button>
+            <button type="button" class="todo__edit">Edit</button>
+         </div>
+         <div class="todo">
+            <p class="task__description">Description for Task3</p>
+            <p class="task__date">10-10-2010</p>
+            <input type="checkbox" name="isdone" id="todo__isdone">
+            <p class="task__name">Task3</p>
+            <button type="button" class="todo__delete">Delete</button>
+            <button type="button" class="todo__edit">Edit</button>
+         </div>
+      </ul>
+      <div class="state__btns">
+         <button type="button" class="all">All</button>
+         <button type="button" class="done">Done</button>
+         <button type="button" class="active">Active</button>
+      </div>
+   </div>
 
    <script src="main.js"></script>
 </body>
