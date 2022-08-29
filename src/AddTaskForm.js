@@ -24,7 +24,7 @@ export default (function AddTaskForm() {
                </label>
             </div>
             <div class="form__buttons">
-               <button type="submit" id="submit__task">Add new task</button>
+               <button type="submit" id="submit__task">Add task</button>
                <button type="button" id="close__form">Back</button>
             </div>
          </form>`

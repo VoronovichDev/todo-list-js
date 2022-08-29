@@ -11,9 +11,8 @@ export default function TodoItem(name, description, taskDate, isDone, taskId, is
    <p class="task__date">${taskDate}</p>
    <input type="checkbox" name="isdone" id="todo__isdone" ${isDone ? "checked" : ""} >
    <p class="task__name">${name}</p>
-   <button type="button" class="todo__delete">Delete</button>
-   <button type="button" class="todo__edit">Edit</button>
+   <button type="button" class="todo__delete">X</button>
+   <button type="button" class="todo__edit">...</button>
    `
-
    return todo
 }
