@@ -72,9 +72,30 @@ TodoList.addEventListener('click', (e) => {
 
    // delete task logic
    if (e.target.className === 'todo__delete') {
+
       todoItems.splice(+clickedIndex, 1)
-      todoList.innerHTML = ''
-      renderTodoItems()
+      // correct display of tasks when clicking the delete-button
+      if (curentState === 'done') {
+         let doneTasks = todoItems.filter(item => item.isDone)
+         console.log(doneTasks)
+         const renderDoneItems = () => doneTasks.forEach(item => {
+            let taskId = todoItems.indexOf(item)
+            todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
+         })
+         todoList.innerHTML = ''
+         renderDoneItems()
+      } else if (curentState === 'all') {
+         todoList.innerHTML = ''
+         renderTodoItems()
+      } else if (curentState === 'active') {
+         let activeTasks = todoItems.filter(item => !item.isDone)
+         const renderActiveItems = () => activeTasks.forEach(item => {
+            let taskId = todoItems.indexOf(item)
+            todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
+         })
+         todoList.innerHTML = ''
+         renderActiveItems()
+      }
       // toggle isDone logic
    } else if (e.target.name === 'isdone') {
       console.log(curentState)
@@ -139,8 +160,29 @@ TodoList.addEventListener('click', (e) => {
          todoItems[clickedIndex] = editedTask
          console.log(todoItems[clickedIndex])
          container.querySelector('.modal__form').remove()
-         todoList.innerHTML = ''
-         renderTodoItems()
+
+         // correct display of tasks when editing any task
+         if (curentState === 'done') {
+            let doneTasks = todoItems.filter(item => item.isDone)
+            console.log(doneTasks)
+            const renderDoneItems = () => doneTasks.forEach(item => {
+               let taskId = todoItems.indexOf(item)
+               todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
+            })
+            todoList.innerHTML = ''
+            renderDoneItems()
+         } else if (curentState === 'all') {
+            todoList.innerHTML = ''
+            renderTodoItems()
+         } else if (curentState === 'active') {
+            let activeTasks = todoItems.filter(item => !item.isDone)
+            const renderActiveItems = () => activeTasks.forEach(item => {
+               let taskId = todoItems.indexOf(item)
+               todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
+            })
+            todoList.innerHTML = ''
+            renderActiveItems()
+         }
 
          // reset form fields
          // e.target.reset()
