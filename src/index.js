@@ -77,7 +77,31 @@ TodoList.addEventListener('click', (e) => {
       renderTodoItems()
       // toggle isDone logic
    } else if (e.target.name === 'isdone') {
+      console.log(curentState)
       todoItems[clickedIndex].isDone = !todoItems[clickedIndex].isDone
+
+      // correct display of tasks when clicking the checkmark
+      if (curentState === 'done') {
+         let doneTasks = todoItems.filter(item => item.isDone)
+         console.log(doneTasks)
+         const renderDoneItems = () => doneTasks.forEach(item => {
+            let taskId = todoItems.indexOf(item)
+            todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
+         })
+         todoList.innerHTML = ''
+         renderDoneItems()
+      } else if (curentState === 'all') {
+         todoList.innerHTML = ''
+         renderTodoItems()
+      } else if (curentState === 'active') {
+         let activeTasks = todoItems.filter(item => !item.isDone)
+         const renderActiveItems = () => activeTasks.forEach(item => {
+            let taskId = todoItems.indexOf(item)
+            todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
+         })
+         todoList.innerHTML = ''
+         renderActiveItems()
+      }
    } else if (e.target.className === 'todo__edit') {
       console.log(clickedIndex)
 
@@ -128,10 +152,14 @@ TodoList.addEventListener('click', (e) => {
    } else return
 })
 
+let curentState = 'all';
+
+
 // shows tasks depending on the selected state
 StateButtons.addEventListener('click', (e) => {
    if (e.target.className === 'done') {
-      console.log('it is done button')
+      curentState = 'done';
+      console.log(curentState)
       let doneTasks = todoItems.filter(item => item.isDone)
       console.log(doneTasks)
       const renderDoneItems = () => doneTasks.forEach(item => {
@@ -141,15 +169,17 @@ StateButtons.addEventListener('click', (e) => {
       todoList.innerHTML = ''
       renderDoneItems()
    } else if (e.target.className === 'all') {
+      curentState = 'all';
       todoList.innerHTML = ''
       renderTodoItems()
    } else if (e.target.className === 'active') {
-      todoList.innerHTML = ''
+      curentState = 'active';
       let activeTasks = todoItems.filter(item => !item.isDone)
       const renderActiveItems = () => activeTasks.forEach(item => {
          let taskId = todoItems.indexOf(item)
          todoList.appendChild(TodoItem(item.taskName, item.taskDescription, item.taskDate, item.isDone, taskId, item.isImportant))
       })
+      todoList.innerHTML = ''
       renderActiveItems()
    }
 })
